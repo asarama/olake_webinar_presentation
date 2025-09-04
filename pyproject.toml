@@ -6,6 +6,6 @@ readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
     "pydantic-settings>=2.10.1",
-    "pyiceberg[duckdb,glue,pandas,s3fs]>=0.9.1",
+    "pyiceberg[glue,s3fs,pyarrow,pandas]>=0.9.1",
     "qrcode[pil]>=8.2",
 ]

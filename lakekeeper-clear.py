@@ -13,11 +13,21 @@ lakekeeper_catalog = load_catalog(
 )
 timer.add("load_catalog")
 
-lakekeeper_catalog.drop_namespace("hello_world")
-timer.add("drop_namespace")
+namespaces = lakekeeper_catalog.list_namespaces()
+timer.add("list_namespaces")
 
+for namespace in namespaces:
 
-lakekeeper_catalog.drop_namespace("hello_world_2")
-timer.add("drop_namespace_2")
+    namespace_name, = namespace
+    tables = lakekeeper_catalog.list_tables(namespace)
+    timer.add(f"list_tables in namespace {namespace_name}")
+
+    for table in tables:
+        table_namespace_name, table_name = table
+        lakekeeper_catalog.drop_table(table)
+        timer.add(f"drop_table {table_name} in namespace {table_namespace_name}")
+
+    lakekeeper_catalog.drop_namespace(namespace)
+    timer.add(f"drop_namespace {namespace_name}")
 
 timer.display()
