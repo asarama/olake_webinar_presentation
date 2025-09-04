@@ -27,12 +27,10 @@ class Timer:
         previous_time = start_time
 
         for label, timestamp in self.timestamps:
-            time_since_start = timestamp - start_time
             time_since_previous = timestamp - previous_time
             results.append({
                 "step": label,
-                "time_since_start": time_since_start,
-                "time_since_previous": time_since_previous
+                "time_elapsed": time_since_previous
             })
             previous_time = timestamp
         
@@ -43,13 +41,27 @@ class Timer:
         """Displays the timing results in a formatted table."""
         results, total_time = self._get_results()
 
+        # ANSI escape codes for colors
+        RED = "\033[91m"
+        GREEN = "\033[92m"
+        YELLOW = "\033[93m"
+        RESET = "\033[0m"
+
         print("Timer Results:")
         print("-" * 60)
-        print(f"{'Step':<20} | {'Time Since Start':<20} | {'Time Since Previous':<20}")
+        print(f"{'Step':<20} | {'Time Elapsed':<20}")
         print("-" * 60)
 
         for res in results:
-            print(f"{res['step']:<20} | {res['time_since_start']:.4f}s{'':<15} | {res['time_since_previous']:.4f}s")
+            time_elapsed = res['time_elapsed']
+            if time_elapsed > 5:
+                color = RED
+            elif time_elapsed < 1:
+                color = GREEN
+            else:
+                color = YELLOW
+
+            print(f"{res['step']:<20} | {color}{time_elapsed:.4f}s{RESET}")
 
         print("-" * 60)
         print(f"Total Time: {total_time:.4f}s")
