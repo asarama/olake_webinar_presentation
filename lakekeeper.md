@@ -2,6 +2,9 @@
 
 ## Setup
 
+### Requirements
+
+- Docker
 
 ### Downloading
 
@@ -17,7 +20,7 @@ Couple options to pick from
 ### Bootstrapping
 
 1. Start up Lakekeeper
-2. Now we have a couple options
+2. Create a warehouse
   a. Their REST API
   b. Their UI
-3. Done...
+3. Ready to query

@@ -2,6 +2,15 @@
 
 Iceberg catalogs overview
 
+## Base requirements
+
+- AWS Account
+- S3 bucket
+- S3 Access
+  - ACCESS_KEY_ID
+  - SECRET_ACCESS_KEY
+  - ROLE_ARN
+
 ## Sources
 
 1. [Apache Iceberg Cookbook - Getting Started Catalog Background](https://www.tabular.io/apache-iceberg-cookbook/getting-started-catalog-background/)
